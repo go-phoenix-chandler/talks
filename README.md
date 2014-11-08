@@ -1,6 +1,6 @@
 # Talks - go-phoenix-chandler
 
-All talks and presentations given at the go-phoenix-chandler meetup will be stored here.
+All talks and presentations given at the [Go Phoenix-Chandler Meetup](http://www.meetup.com/Go-Phoenix-Chandler-Programmers) will be stored here.
 
 Presentations can be in any format the presenter prefers though Go provides excellent presentation capabilities utilizing [the presentation library software](http://godoc.org/code.google.com/p/go.tools/present)
 
