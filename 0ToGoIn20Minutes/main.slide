@@ -267,7 +267,7 @@ The `testing` package provides the ability for an engineer to benchmark go code.
 # Fráma 18
 * Go Doc
 
-`godoc`, like other packages that will generate documentation based on comment blocks or docstrings (JavaDoc, Sphinx), will generate documentation from your comments AND will analyze your code to get the rest of the story like return values, types, etc.  The HTML pages can be accessed locally by running the below command:
+`godoc`, like other packages (JavaDoc, Sphinx) that will generate documentation based on comment blocks or docstrings, will generate documentation from your comments AND will analyze your code to get the rest of the information like return values, types, etc.  The HTML pages can be accessed locally by running the below command:
 
  godoc -http:8888
 
