@@ -251,7 +251,7 @@ The `testing` package provides the ability for an engineer to benchmark go code.
 # Fráma 17
 * go vet
 
-`go vet` examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string. Vet uses heuristics that do not guarantee all reports are genuine problems, but it can find errors not caught by the compilers.
+`go` `vet` examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string. Vet uses heuristics that do not guarantee all reports are genuine problems, but it can find errors not caught by the compilers.
 
 - Example 1
 
