@@ -236,7 +236,7 @@ To run all tests in the current directory with verbose output:
 # Fráma 16
 * go test benchmark
 
-The `testing` package provides the ability for an engineer to benchmark go code.  The benchmarks get run after the tests.  If you want to disable the tests, you can give a regex to the `-run=xxx` argument and no tests will be run.
+The `testing` package provides the ability for an engineer to benchmark Go code.  The benchmarks get run after the tests.  If you want to disable the tests, you can give a regex to the `-run=xxx` argument and no tests will be run.
 
 .code src/test_test.go /^func Fibonacci/,/^}/
 .code src/test_test.go /^func BenchmarkFibonacci/,/^}/
