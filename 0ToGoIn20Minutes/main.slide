@@ -217,7 +217,7 @@ Example 1
 
  go tool fix -r openweathermap
 
-The "-r" flag tells the `go tool fix` command to only "fix" the specified file(s).
+The "-r" flag tells the `go` `tool` `fix` command to only "fix" the specified file(s).
 
 # Fráma 15
 * go test
