@@ -345,7 +345,7 @@ Example 3
 * Conclusion
 
 - Simple install from a tarball or pacakge
-- Quick environment configuration including variables and directory paths
+- Quick configuration: environment variables and directories
 - Tons of tools that make coding fun and easy
 - Tons of tools that lead to better code
 - Tools for keeping code sane and viable for others to use
