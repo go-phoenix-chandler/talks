@@ -153,7 +153,7 @@ Output
 
 `go` `get` downloads and installs the packages named by the import paths, along with their dependancies.
 
-One of the more popular flags given to the get argument is the `-u` flag which tells `go` `get` to update the named packages and their dependencies.
+One of the more popular flags given to the get argument is `-u` which tells `go` `get` to update the named packages and their dependencies.
 
 Examples:
 
