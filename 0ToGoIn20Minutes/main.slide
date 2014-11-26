@@ -305,7 +305,7 @@ Example 3
 # Fráma 21
 * GoCover.io
 
-- gocover.io will provide a line by line analysis of your package's test coverage.
+- Provides a line by line analysis of your package's test coverage.
 - Supports multiple version of Go.
 
 .iframe http://gocover.io 475 980
