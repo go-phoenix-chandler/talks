@@ -209,7 +209,7 @@ Example 2
 # Fráma 14
 * go fix
 
-`go` `fix` finds `go` programs that use old API's and rewrites them to use newer ones.  After you update to a new Go release, `go` `fix` helps make the necessary changes to your programs.
+`go` `fix` finds Go programs that use old API's and rewrites them to use newer ones.  After you update to a new Go release, `go` `fix` helps make the necessary changes to your programs.
 
 *Warning:* `go` `fix` _does_ _not_ create backup files.
 
