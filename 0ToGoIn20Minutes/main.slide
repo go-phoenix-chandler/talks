@@ -168,7 +168,7 @@ Examples:
 # Fráma 11
 * go fmt
 
-`go` `fmt` will automatically format your code for a specified file or all go files in the directory it's executed in.
+`go` `fmt` will automatically format your code for a specified file or all Go files in the directory it's executed in.
 
 From the Go blog, go formatted code is:
 
