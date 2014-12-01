@@ -322,7 +322,7 @@ Example 3
 
  go get code.google.com/p/go.tools/cmd/present
 
-- Run `present` (Server gets lauchned and runs locally on port 1399)
+- Run `present` (Server gets launched and runs locally on port 1399)
 
  Title of slide or section (must have asterisk)
 
