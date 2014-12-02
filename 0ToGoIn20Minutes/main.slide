@@ -204,7 +204,7 @@ Example 2
 
  go run app.go database.go
 
-*Stupid*  *moment* *:* This caught me off gaurd one day when my app wouldn't connect to the database.  I had a separate database file to control access.  I realized that of course I had to do give the database file as another argument as there'd be no other way for the app.go to know about database.go, post compilation.
+*Stupid*  *moment* *:* This caught me off gaurd one day when my app wouldn't connect to the database.  I had a separate database file to control access.  I realized that of course all I had to do was to give the database file as another argument as there'd be no other way for the app.go to know about database.go, post compilation.
 
 # Fráma 14
 * go fix
