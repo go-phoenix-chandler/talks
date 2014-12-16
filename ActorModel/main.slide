@@ -1,0 +1,97 @@
+# Slide 1
+Actor Model
+Go Phoenix-Chandler Programmers
+18:00 8 Jan 2015
+Tags: go golang go-phoenix-chandler
+
+Sean Dolphin
+KPCompass, Inc.
+
+https://github.com/go-phoenix-chandler
+
+# Slide 2
+* Introduction
+
+- Thanks
+- Who am I?
+- Programming Paradigms
+
+# Slide 3
+* OOP
+.play src/oop.go /START OMIT/,/END OMIT/
+
+# Slide 4
+* Functional
+.play src/functional.go /START OMIT/,/END OMIT/
+
+# Slide 5
+* Actor Model
+
+- Actors control their own state
+- Actors recieve messages
+- Actors make local decisions
+- Actors can make more Actors
+- Actors can send messages to other Actors
+
+	func(in <-chan int ) <-chan string{
+		out := make(chan string)
+		go func(){
+			state := 0
+			for data := range in {                              //Recieve Messages
+				state += 1                                      //Control their ownstate
+				if data % 2 == 0{                               //Make local decisions
+				  out <- fmt.Sprintf("%d %d isEven",data,state) //Send Messages
+				}
+				go AnotherActor()                               //Make more actors
+			}
+		}
+		return out
+	}
+
+# Slide 6
+* Actor Patterns
+- Generator / Producer
+- Consumer
+- Pipelines
+- Fan-in/out
+- Cancellation
+- Context -> Not shown way to lazy to write it out
+
+# Slide 7
+* Generator / Producer
+.play src/generator.go /START OMIT/,/END OMIT/
+
+# Slide 8
+* Consumer
+.play src/consumer.go /START OMIT/,/END OMIT/
+
+# Slide 9
+* Pipeline
+.play src/pipeline.go /START OMIT/,/END OMIT/
+
+# Slide 10
+* Fan-in
+.play src/fan.go /START OMIT/,/END OMIT/
+
+# Slide 11
+* Cancellation
+.play src/cancellation.go /START OMIT/,/END OMIT/
+
+# Slide Links
+* Links
+
+Go Concurrency Patterns (2012)
+
+.link http://talks.golang.org/2012/concurrency.slide talks.golang.org/2012/concurrency.slide
+
+Advanced Concurrent Patterns (2013)
+
+.link http://talks.golang.org/2013/advconc.slide talks.golang.org/2013/advconc.slide
+
+Go Concurrrency Patters: Pipelines (2014)
+
+.link http://blog.golang.org/pipelines blog.golang.org/pipelines
+
+Go Concurrrency Patters: Context (2014)
+
+.link https://blog.golang.org/context blog.golang.org/context
