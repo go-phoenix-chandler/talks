@@ -39,7 +39,7 @@ Is the same process as installation.  Go will be ready to _go_ as soon as the `t
 .iframe http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Golang.png/300px-Golang.png
 
 # Fráma 4
-* New "for range" loop structure
+* New "for range" Loop Structure
 
 No requirement to have variable assignment.
 
