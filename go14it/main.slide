@@ -1,0 +1,79 @@
+# Cur i láthair: Go1.4It
+# 8 Eanáir, 2015
+#
+# Header for first and last slide
+#
+# Fráma 1
+Go 1.4 It
+Go Phoenix-Chandler Programmers
+18:00 8 Jan 2015
+Tags: go golang go-phoenix-chandler
+
+Brian Downs
+Software Engineer, IO Data Centers
+
+http://briandowns.github.io
+https://github.com/go-phoenix-chandler
+@bdowns328
+
+# Fráma
+
+* Thank You
+Thank you InfusionSoft
+
+# Fráma
+* Release Announcement
+
+.iframe https://golang.org/doc/gopher/talks.png
+
+- Full details can be found at the Go Blog: https://blog.golang.org/go1.4
+
+# Fráma
+* Installation
+
+- Installation remains the same as the previous versions.
+- If you have Go already installed, it will be ready to _go_ as soon as the `tar` command returns 0.
+
+# Fráma
+* New for loop structure
+
+You can now do:
+
+.play src/examples.go /^func NewForExample/,/^}/
+
+# Fráma
+* Newly Supported Platforms
+
+- Android
+- ARM
+- Plan9 on AMD64
+
+# Fráma
+* Stringer
+
+Stringer is a tool to automate the creation of methods that satisfy the fmt.Stringer interface.
+
+- Installation
+go get golang.org/x/tools/cmd/stringer
+
+- Generate Code
+.code src/examples.go /^//go/,/^)/
+
+- Resulting Code
+.code
+
+# Fráma
+* Drawbacks
+
+- IDE Support
+The Go authors decided to drop support for a number of IDE's and other apps as part of the standard distribution.  That being the case, you might notice a lack of behavior and/or features from your IDE.  All is not lost though.
+
+- Vim as an IDE
+
+Not to fear, Fatih Arslan has the solution.  https://github.com/fatih/vim-go
+
+There are others but I've found this one to work best for me.
+
+I'd like to care about the rest of the IDE's but I just don't.
+
+# Fráma
