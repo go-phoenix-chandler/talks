@@ -12,6 +12,7 @@ const (
 	Gaeilge = Irish
 )
 
+// NewForRangeExample prints a string for each element in the stuff array
 func NewForRangeExample() {
 	stuff := []string{"Happy", "New", "Year"}
 	for range stuff {
