@@ -16,64 +16,83 @@ http://briandowns.github.io
 https://github.com/go-phoenix-chandler
 @bdowns328
 
-# Fráma
-
-* Thank You
-Thank you InfusionSoft
-
-# Fráma
-* Release Announcement
+# Fráma 2
+* Release
 
 .iframe https://golang.org/doc/gopher/talks.png
 
-- Full details can be found at the Go Blog: https://blog.golang.org/go1.4
+- Full details can be found below
 
-# Fráma
-* Installation
+.link https://blog.golang.org/go1.4 Go 1.4 Release Notes
 
-- Installation remains the same as the previous versions.
-- If you have Go already installed, it will be ready to _go_ as soon as the `tar` command returns 0.
+# Fráma 3
+* Installation / Upgrade
 
-# Fráma
-* New for loop structure
+- Installation
 
-You can now do:
+Remains the same as the previous versions.
 
-.play src/examples.go /^func NewForExample/,/^}/
+- Upgrade
 
-# Fráma
+Is the same process as installation.  Go will be ready to _go_ as soon as the `tar` command returns 0.
+
+.iframe http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Golang.png/300px-Golang.png
+
+# Fráma 4
+* New "for range" loop structure
+
+No requirement to have variable assignment.
+
+.code src/examples.go /^func NewForRangeExample/,/^}/
+
+# Fráma 5
 * Newly Supported Platforms
 
 - Android
 - ARM
 - Plan9 on AMD64
 
-# Fráma
-* Stringer
+.iframe https://talks.golang.org/2014/droidcon/gopherswrench.jpg 600 1000
 
-Stringer is a tool to automate the creation of methods that satisfy the fmt.Stringer interface.
+# Fráma 6
+* Generate and Stringer
 
-- Installation
+- Generate Subcommand
+
+Automate the running of tools to generate source code before compilation
+
+- String
+
+Stringer is a tool to automate the creation of methods that satisfy the fmt.Stringer interface.  Stringer can be installed from the command below.
+
 go get golang.org/x/tools/cmd/stringer
 
 - Generate Code
-.code src/examples.go /^//go/,/^)/
+
+.code src/examples.go /^//go/,/^\)/
+
+# Fráma 7
+* Stringer Cont...
 
 - Resulting Code
-.code
 
-# Fráma
-* Drawbacks
+.code src/languages_string.go /^\/\//,/^}/
+
+As the documentation states, this code is ugly though, it's not meant to be human readable have any human interaction.
+
+# Fráma 8
+* ...A Drawback
+
+.image http://spyrestudios.com/wp-content/uploads/2010/02/drawbacks.jpg 250 500
 
 - IDE Support
-The Go authors decided to drop support for a number of IDE's and other apps as part of the standard distribution.  That being the case, you might notice a lack of behavior and/or features from your IDE.  All is not lost though.
 
-- Vim as an IDE
+The Go authors decided to drop support for a number of IDE's and other apps from the standard distribution.
 
-Not to fear, Fatih Arslan has the solution.  https://github.com/fatih/vim-go
+.link https://github.com/fatih/vim-go Vim-Go
+has all of the necessary tools to get back up and running.
 
-There are others but I've found this one to work best for me.
+# Fráma 9
+* Go is now on Github! github.com/golang/go
 
-I'd like to care about the rest of the IDE's but I just don't.
-
-# Fráma
+.iframe http://3.bp.blogspot.com/-odyZNqTtqEg/UyqXgTyBo2I/AAAAAAAAAUc/MN1wlnvKfxM/s3200/Octocat.png 700 1000

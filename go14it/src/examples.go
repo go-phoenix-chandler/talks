@@ -12,7 +12,7 @@ const (
 	Gaeilge = Irish
 )
 
-func NewForExample() {
+func NewForRangeExample() {
 	stuff := []string{"Happy", "New", "Year"}
 	for range stuff {
 		fmt.Println("doing stuff...")
