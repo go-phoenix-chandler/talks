@@ -1,0 +1,98 @@
+# Cur i láthair: Go1.4It
+# 8 Eanáir, 2015
+#
+# Header for first and last slide
+#
+# Fráma 1
+Go 1.4 It
+Go Phoenix-Chandler Programmers
+18:00 8 Jan 2015
+Tags: go golang go-phoenix-chandler
+
+Brian Downs
+Software Engineer, IO Data Centers
+
+http://briandowns.github.io
+https://github.com/go-phoenix-chandler
+@bdowns328
+
+# Fráma 2
+* Release
+
+.iframe https://golang.org/doc/gopher/talks.png
+
+- Full details can be found below
+
+.link https://blog.golang.org/go1.4 Go 1.4 Release Notes
+
+# Fráma 3
+* Installation / Upgrade
+
+- Installation
+
+Remains the same as the previous versions.
+
+- Upgrade
+
+Is the same process as installation.  Go will be ready to _go_ as soon as the `tar` command returns 0.
+
+.iframe http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Golang.png/300px-Golang.png
+
+# Fráma 4
+* New "for range" Loop Structure
+
+No requirement to have variable assignment.
+
+.code src/examples.go /^func NewForRangeExample/,/^}/
+
+# Fráma 5
+* Newly Supported Platforms
+
+- Android
+- ARM
+- Plan9 on AMD64
+
+.iframe https://talks.golang.org/2014/droidcon/gopherswrench.jpg 600 1000
+
+# Fráma 6
+* Generate and Stringer
+
+- Generate Subcommand
+
+Automate the running of tools to generate source code before compilation
+
+- String
+
+Stringer is a tool to automate the creation of methods that satisfy the fmt.Stringer interface.  Stringer can be installed from the command below.
+
+go get golang.org/x/tools/cmd/stringer
+
+- Generate Code
+
+.code src/examples.go /^//go/,/^\)/
+
+# Fráma 7
+* Stringer Cont...
+
+- Resulting Code
+
+.code src/languages_string.go /^\/\//,/^}/
+
+As the documentation states, this code is ugly though, it's not meant to be human readable have any human interaction.
+
+# Fráma 8
+* ...A Drawback
+
+.image http://spyrestudios.com/wp-content/uploads/2010/02/drawbacks.jpg 250 500
+
+- IDE Support
+
+The Go authors decided to drop support for a number of IDE's and other apps from the standard distribution.
+
+.link https://github.com/fatih/vim-go Vim-Go
+has all of the necessary tools to get back up and running.
+
+# Fráma 9
+* Go is now on Github! github.com/golang/go
+
+.iframe http://3.bp.blogspot.com/-odyZNqTtqEg/UyqXgTyBo2I/AAAAAAAAAUc/MN1wlnvKfxM/s3200/Octocat.png 700 1000
