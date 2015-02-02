@@ -72,7 +72,7 @@ RDS:
 * EC2 Examples
 
 # Fráma
-* List Instances
+* List Instances With Their Current State
 
 .code src/ec2.go /START OMIT/,/END OMIT/
 
