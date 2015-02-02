@@ -1,0 +1,90 @@
+# Cur i láthair: AWSandGo
+# 5 Feabhra, 2015
+#
+# Header for first and last slide
+#
+# Fráma 1
+AWS and Go
+Go Phoenix-Chandler Programmers
+18:30 5 Feb 2015
+Tags: go golang go-phoenix-chandler
+
+Brian Downs
+Software Engineer, IO Data Centers
+
+http://briandowns.github.io
+https://github.com/go-phoenix-chandler
+@bdowns328
+
+# Fráma 2
+* API Access
+
+To use the AWS API you need to get an access key and a secret key.  To do so, you need to go to the IAM section of your account and create a role that has those permissions.  Then, assign that role to a group and make sure that the user is a member.  There's fine grain access controls in IAM so make sure to understand them when assigning.
+
+
+# Fráma 3
+* Picking an SDK
+
+There are a number of SDK's for use with Amazon Web Services.  Below are the most popular ordered by GitHub stars from highest to lowest.
+
+.link https://github.com/awslabs/aws-sdk-go aws-sdk-go
+.link https://github.com/goamz/goamz goamz
+.link https://github.com/abneptis/GoAWS GoAWS
+
+For this talk I've chosen the SDK from AWSLabs.
+
+# Fráma 4
+* aws-sdk-go
+
+_From_the_GitHub_README:_
+
+The AWS SDK for Go is a set of clients for *all* Amazon Web Services APIs that initially started as [[https://github.com/awslabs/aws-sdk-go/tree/50f5f12927d77de6ec71a7473fe1f1081734d908][Stripe's aws-go library]], and is currently under development to implement full service coverage and other standard AWS SDK features.
+
+It is currently *highly* *untested*, so please be patient and report any bugs or problems you experience. The APIs may change radically without much warning, so please vendor your dependencies w/ Godep or similar.
+
+Please do not confuse this for a stable, feature-complete library.
+
+# Fráma 5
+* Installation
+
+Base:
+
+ go get github.com/awslabs/aws-sdk-go/aws
+
+EC2:
+
+ go get github.com/awslabs/aws-sdk-go/gen/ec2
+
+S3:
+
+ go get github.com/awslabs/aws-sdk-go/gen/s3
+
+RDS:
+
+ go get github.com/awslabs/aws-sdk-go/gen/rds
+
+# Fráma 6
+* EC2
+
+.iframe http://www.pyimagesearch.com/wp-content/uploads/2014/10/gpu_amazon_ec2_logo.png 1000 500
+
+# Fráma
+* EC2 Examples
+
+# Fráma
+* List Instances
+
+.code src/ec2.go /START OMIT/,/END OMIT/
+
+# Fráma
+* S3
+
+.iframe http://www.linkgard.com/wp-content/uploads/2013/10/amazon_aws-s3.png 1000 500
+
+# Fráma
+* RDS
+
+.iframe https://www.scalebase.com/wp-content/uploads/2014/10/MySQL-migration-to-Amazon-RDS.png 1000 500
+
+# Fráma
+*
