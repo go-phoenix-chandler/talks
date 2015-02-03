@@ -3,10 +3,9 @@ package main
 // START OMIT
 import (
 	"fmt"
-	"os"
-
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/gen/ec2"
+	"os"
 )
 
 var region = "us-west-2"
@@ -18,9 +17,10 @@ func main() {
 	if err != nil {
 		fmt.Fatalln(err)
 	}
-	// interate over the []Reservation slice and print them
-	for i, r := range desc.Reservations.Instances {
-		fmt.Printf("%2d: %10s - %10s\n", i+1, r.InstanceID, r.State.Name)
+	for i, r := range desc.Reservations {
+		fmt.Printf("%2d: %v - %v - %v\n", i+1,
+			*r.Instances[i].InstanceID, *r.Instances[i].Tags[0].Value, *r.Instances[i].State.Name,
+		)
 	}
 }
 
