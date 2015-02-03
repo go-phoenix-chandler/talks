@@ -1,6 +1,5 @@
 package main
 
-// START OMIT
 import (
 	"fmt"
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -11,18 +10,47 @@ import (
 
 var region = "us-west-2"
 
-func main() {
+// Connect will create a valid ec2 client
+func Connect() *ec2.EC2 {
 	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")
-	e := ec2.New(creds, region, nil)
-	desc, err := e.DescribeIntances(nil) // gets an instance of DescribeInstancesResults
+	return ec2.New(creds, region, nil)
+}
+
+// Stop will shutdown an EC2 instance
+func Stop(e *ec2.EC2, instances []string) {
+	resp, err := e.StopInstances(&ec2.StopInstancesRequest{
+		DryRun:      aws.Boolean(false),
+		Force:       aws.Boolean(true),
+		InstanceIDs: instances,
+	})
 	if err != nil {
 		log.Fatalln(err)
 	}
-	for i, r := range desc.Reservations {
+	fmt.Println(*resp)
+}
+
+// Start will bring up an EC2 instance
+func Start(e *ec2.EC2, instances []string) {
+	resp, err := e.StartInstances(&ec2.StartInstancesRequest{
+		AdditionalInfo: aws.String(""),
+		DryRun:         aws.Boolean(false),
+		InstanceIDs:    instances,
+	})
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(*resp)
+}
+
+// ListInstanceData will print out instance data
+func ListInstanceData(e *ec2.EC2) {
+	resp, err := e.DescribeInstances(nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	for i, r := range resp.Reservations {
 		fmt.Printf("%2d: %v - %v - %v\n", i+1,
 			*r.Instances[i].InstanceID, *r.Instances[i].Tags[0].Value, *r.Instances[i].State.Name,
 		)
 	}
 }
-
-// END OMIT
