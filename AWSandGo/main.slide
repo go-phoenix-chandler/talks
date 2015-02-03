@@ -17,10 +17,16 @@ https://github.com/go-phoenix-chandler
 @bdowns328
 
 # Fráma 2
-* API Access
+* API Access and Setup
 
 To use the AWS API you need to get an access key and a secret key.  To do so, you need to go to the IAM section of your account and create a role that has those permissions.  Then, assign that role to a group and make sure that the user is a member.  There's fine grain access controls in IAM so make sure to understand them when assigning.
 
+To avoid security problems, add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code.
+
+From your CLI:
+
+ $ export AWS_ACCESS_KEY="somethingofsomeinterest"
+ $ export AWS_SECRET_KEY="somethingofsomeinterest"
 
 # Fráma 3
 * Picking an SDK
@@ -63,13 +69,14 @@ RDS:
 
  go get github.com/awslabs/aws-sdk-go/gen/rds
 
+SQS:
+
+ go get github.com/awslabs/aws-sdk-go/gen/sqs
+
 # Fráma 6
 * EC2
 
-.iframe http://www.pyimagesearch.com/wp-content/uploads/2014/10/gpu_amazon_ec2_logo.png 1000 500
-
-# Fráma
-* EC2 Examples
+.iframe http://www.pyimagesearch.com/wp-content/uploads/2014/10/gpu_amazon_ec2_logo.png 800 500
 
 # Fráma
 * List Instances With Their Current State
@@ -80,6 +87,9 @@ RDS:
 * S3
 
 .iframe http://www.linkgard.com/wp-content/uploads/2013/10/amazon_aws-s3.png 1000 500
+
+# Fráma
+* Create Bucket
 
 # Fráma
 * RDS

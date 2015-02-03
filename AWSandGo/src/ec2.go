@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/gen/ec2"
+	"log"
 	"os"
 )
 
@@ -15,7 +16,7 @@ func main() {
 	e := ec2.New(creds, region, nil)
 	desc, err := e.DescribeIntances(nil) // gets an instance of DescribeInstancesResults
 	if err != nil {
-		fmt.Fatalln(err)
+		log.Fatalln(err)
 	}
 	for i, r := range desc.Reservations {
 		fmt.Printf("%2d: %v - %v - %v\n", i+1,
