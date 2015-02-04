@@ -69,6 +69,10 @@ RDS:
 
  go get github.com/awslabs/aws-sdk-go/gen/rds
 
+S3:
+
+ go get github.com/awslabs/aws-sdk-go/gen/s3
+
 # Fráma
 * A bit about the package...
 
@@ -129,7 +133,7 @@ To start an instance you need to provide a pointer of StopInstancesRequest with 
 # Fráma
 * SQS Continued...
 
-- Send Message
+- Send a Message
 
 Simply send a message into the given queue. `SendMessageRequest` can be used for more specific control.
 
@@ -138,7 +142,7 @@ Simply send a message into the given queue. `SendMessageRequest` can be used for
 # Fráma
 * SQS Continued...
 
-- Retrieve Message
+- Retrieve a Message
 
 In this example we're saying we want all messages from the given queue.  We can specify a number of parameters using the `ReceiveMessageRequest` struct if we wanted.
 
@@ -161,21 +165,20 @@ Index: ID: Body
 * RDS
 
 # Fráma
-* Connect to RDS
+* Common RDS Functions
 
-Connecting to RDS is as exciting as it was connecting to EC2 and S3...
+- Connecting to RDS is as exciting as it was connecting to EC2 and SQS...
 
 .code src/rds/main.go /^func Connect/,/^}/
 
-# Fráma
-* List DB instances
+- List DB instances
 
 .code src/rds/main.go /^func ListDBInstances/,/^}/
 
 # Fráma
 * Restore From Snapshot
 
-We need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
+First, we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
 
 .code src/rds/main.go /^var rfs/,/^}/
 
@@ -194,3 +197,5 @@ Working with AWS using Go:
 - More verbose than Python
 - Less verbose than Java
 - More fun than both of the before mentioned
+- The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
+- Go is a great language to write small services that run on EC2 hosts for R53 registation, SQS entries on events, etc.

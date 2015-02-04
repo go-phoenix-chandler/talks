@@ -45,13 +45,6 @@ func RetrieveMessage(s *sqs.SQS, q string) []sqs.Message {
 	return resp.Messages
 }
 
-// PrintMessages will do what you think...
-func PrintMessages(msgs []sqs.Message) {
-	for i, m := range msgs {
-		fmt.Printf("%2d: %s: %s\n", i+1, *m.MessageID, *m.Body)
-	}
-}
-
 // GetQueues returns a string slice of all found queues by their URL
 func GetQueues(s *sqs.SQS) []string {
 	resp, err := s.ListQueues(
@@ -62,18 +55,22 @@ func GetQueues(s *sqs.SQS) []string {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	//for i, q := range GetQueues(s) {
+	//	fmt.Printf("%2d: %s\n", i+1, q)
+	//}
 	return resp.QueueURLs
+}
+
+// PrintMessages will do what you think...
+func PrintMessages(msgs []sqs.Message) {
+	for i, m := range msgs {
+		fmt.Printf("%2d: %s: %s\n", i+1, *m.MessageID, *m.Body)
+	}
 }
 
 func main() {
 	s := Connect()
-	/*
-		for i, q := range GetQueues(s) {
-			fmt.Printf("%2d: %s\n", i+1, q)
-		}
-	*/
 	SendMessage(s, "Test Message 1", GetQueues(s)[0])
 	time.Sleep(1 * time.Second)
-	//RetrieveMessage(s, GetQueues(s)[0])
 	PrintMessages(RetrieveMessage(s, GetQueues(s)[0]))
 }
