@@ -131,11 +131,31 @@ To start an instance you need to provide a pointer of StopInstancesRequest with 
 
 - Send Message
 
+Simply send a message into the given queue. `SendMessageRequest` can be used for more specific control.
+
 .code src/sqs/main.go /^func SendMessage/,/^}/
+
+# Fráma
+* SQS Continued...
 
 - Retrieve Message
 
+In this example we're saying we want all messages from the given queue.  We can specify a number of parameters using the `ReceiveMessageRequest` struct if we wanted.
+
 .code src/sqs/main.go /^func RetrieveMessage/,/^}/
+
+# Fráma
+* SQS Continued...
+
+- Print Messages
+
+Print out the message ID and the message body.
+
+.code src/sqs/main.go /^func PrintMessages/,/^}/
+
+Index: ID: Body
+
+  1: 34e38ac2-a0ae-42c5-abf0-cfe50e4a32c1: Test Message 1
 
 # Fráma
 * RDS
