@@ -14,19 +14,19 @@ var queue = "gomeetup"
 
 // Connect will create a valid ec2 client
 func Connect() *sqs.SQS {
-	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")
+	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "") // HL
 	return sqs.New(creds, region, nil)
 }
 
 // SendMessage will get a message from the given queue
 func SendMessage(s *sqs.SQS, msg, q string) {
-	_, err := s.SendMessage(
-		&sqs.SendMessageRequest{
-			DelaySeconds: aws.Integer(0),
-			MessageBody:  aws.String(msg),
-			QueueURL:     aws.String(q),
-		},
-	)
+	_, err := s.SendMessage( // HL
+		&sqs.SendMessageRequest{ // HL
+			DelaySeconds: aws.Integer(0),  // HL
+			MessageBody:  aws.String(msg), // HL
+			QueueURL:     aws.String(q),   // HL
+		}, // HL
+	) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -34,11 +34,11 @@ func SendMessage(s *sqs.SQS, msg, q string) {
 
 // RetrieveMessage will get a message from the given queue
 func RetrieveMessage(s *sqs.SQS, q string) []sqs.Message {
-	resp, err := s.ReceiveMessage(
-		&sqs.ReceiveMessageRequest{
-			QueueURL: aws.String(q),
-		},
-	)
+	resp, err := s.ReceiveMessage( // HL
+		&sqs.ReceiveMessageRequest{ // HL
+			QueueURL: aws.String(q), // HL
+		}, // HL
+	) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -47,11 +47,11 @@ func RetrieveMessage(s *sqs.SQS, q string) []sqs.Message {
 
 // GetQueues returns a string slice of all found queues by their URL
 func GetQueues(s *sqs.SQS) []string {
-	resp, err := s.ListQueues(
-		&sqs.ListQueuesRequest{
-			QueueNamePrefix: aws.String(queue),
-		},
-	)
+	resp, err := s.ListQueues( // HL
+		&sqs.ListQueuesRequest{ // HL
+			QueueNamePrefix: aws.String(queue), // HL
+		}, // HL
+	) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}

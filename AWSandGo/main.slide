@@ -201,7 +201,7 @@ Running the function below will bring back an RDS instance from snapshot.
 - Health Checks
 
 # Fráma
-* Conclusions
+* Conclusion
 
 Working with AWS using Go:
 
@@ -210,3 +210,8 @@ Working with AWS using Go:
 - More fun than both of the before mentioned
 - The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
 - Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitated SQS entries on events, and doing thing with RDS, etc.
+- This as well as any of the other talks given at this meetup can be found here:
+
+.link https://github.com/go-phoenix-chandler/talks Go Phoenix-Chandler Programmers GitHub
+
+(https://github.com/go-phoenix-chandler/talks)
