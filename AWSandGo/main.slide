@@ -61,17 +61,13 @@ EC2:
 
  go get github.com/awslabs/aws-sdk-go/gen/ec2
 
-S3:
+SQS:
 
- go get github.com/awslabs/aws-sdk-go/gen/s3
+ go get github.com/awslabs/aws-sdk-go/gen/sqs
 
 RDS:
 
  go get github.com/awslabs/aws-sdk-go/gen/rds
-
-SQS:
-
- go get github.com/awslabs/aws-sdk-go/gen/sqs
 
 # Fráma
 * A bit about the package...
@@ -94,67 +90,81 @@ Boolean values for setting a struct field are expected to be
 # Fráma
 * EC2
 
-.iframe http://www.pyimagesearch.com/wp-content/uploads/2014/10/gpu_amazon_ec2_logo.png 800 500
-
 # Fráma
 * Connect to EC2
 
-.code src/ec2.go /^func Connect/,/^}/
+.code src/ec2/main.go /^func Connect/,/^}/
 
 # Fráma
 * Start an Instance
 
 To start an instance you need to provide a pointer of StopInstancesRequest with the necessary information to the StopInstance method.
 
-.code src/ec2.go /^func Start/,/^}/
+.code src/ec2/main.go /^func Start/,/^}/
 
 # Fráma
 * Stop an Instance
 
-.code src/ec2.go /^func Stop/,/^}/
+.code src/ec2/main.go /^func Stop/,/^}/
 
 # Fráma
 * List Instances Including Their ID, Name, and Current State
 
-.code src/ec2.go /^func ListInstanceData/,/^}/
+.code src/ec2/main.go /^func ListInstanceData/,/^}/
 
 # Fráma
-* S3
-
-.iframe http://www.linkgard.com/wp-content/uploads/2013/10/amazon_aws-s3.png 1000 500
+* SQS
 
 # Fráma
 * Basic Operations
 
-Save a file
+- Connect
 
-.code src/s3.go //,//
+.code src/sqs/main.go /^func Connect/,/^}/
 
-Retrieve a file
+- List Queues
 
-.code src/s3.go //,//
+.code src/sqs/main.go /^func GetQueues/,/^}/
+
+# Fráma
+* SQS Continued...
+
+- Send Message
+
+.code src/sqs/main.go /^func SendMessage/,/^}/
+
+- Retrieve Message
+
+.code src/sqs/main.go /^func RetrieveMessage/,/^}/
 
 # Fráma
 * RDS
-
-.iframe https://www.scalebase.com/wp-content/uploads/2014/10/MySQL-migration-to-Amazon-RDS.png 1000 500
 
 # Fráma
 * Connect to RDS
 
 Connecting to RDS is as exciting as it was connecting to EC2 and S3...
 
-.code src/rds.go /^func Connect/,/^}/
+.code src/rds/main.go /^func Connect/,/^}/
 
 # Fráma
 * List DB instances
 
-.code src/rds.go /^func ListDBInstances/,/^}/
+.code src/rds/main.go /^func ListDBInstances/,/^}/
 
 # Fráma
 * Restore From Snapshot
 
-.code src/rds.go /^func RestoreFromSnapshot/,/^}/
+We need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
+
+.code src/rds/main.go /^var rfs/,/^}/
+
+# Fráma
+* Restore From Snapshot Continued...
+
+Running the function below will bring back an RDS instance from snapshot.
+
+.code src/rds/main.go /^func RestoreFromSnapshot/,/^}/
 
 # Fráma
 * Conclusions
