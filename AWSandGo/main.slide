@@ -190,6 +190,17 @@ Running the function below will bring back an RDS instance from snapshot.
 .code src/rds/main.go /^func RestoreFromSnapshot/,/^}/
 
 # Fráma
+* Route 53
+
+# Fráma
+* Basic Operations
+
+- Connect
+- List Zones and Records
+- Create Record
+- Health Checks
+
+# Fráma
 * Conclusions
 
 Working with AWS using Go:
@@ -198,4 +209,4 @@ Working with AWS using Go:
 - Less verbose than Java
 - More fun than both of the before mentioned
 - The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
-- Go is a great language to write small services that run on EC2 hosts for R53 registation, SQS entries on events, etc.
+- Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitated SQS entries on events, and doing thing with RDS, etc.
