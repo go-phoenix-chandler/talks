@@ -13,18 +13,18 @@ var region = "us-west-2"
 
 // Connect will provide a valid RDS client
 func Connect() *rds.RDS {
-	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")
+	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "") // HL
 	return rds.New(creds, region, nil)
 }
 
 // ListDBInstances will print out the RDS instances
 func ListDBInstances(db *rds.RDS) {
-	desc, err := db.DescribeDBInstances(nil)
+	desc, err := db.DescribeDBInstances(nil) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
 	for i, d := range desc.DBInstances {
-		fmt.Printf("%2d: %v\n", i+1, *d.DBInstanceIdentifier)
+		fmt.Printf("%2d: %v\n", i+1, *d.DBInstanceIdentifier) // HL
 	}
 }
 
@@ -51,7 +51,7 @@ var rfs = &rds.RestoreDBInstanceFromDBSnapshotMessage{
 
 // RestoreSnapshot will restore the DB instance from a snapshot
 func RestoreFromSnapshot(db *rds.RDS) {
-	resp, err := db.RestoreDBInstanceFromDBSnapshot(rfs)
+	resp, err := db.RestoreDBInstanceFromDBSnapshot(rfs) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}

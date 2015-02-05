@@ -12,17 +12,17 @@ var region = "us-west-2"
 
 // Connect will create a valid ec2 client
 func Connect() *ec2.EC2 {
-	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")
+	creds := aws.Creds(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "") // HL
 	return ec2.New(creds, region, nil)
 }
 
 // Stop will shutdown an EC2 instance
 func Stop(e *ec2.EC2, instances []string) {
-	resp, err := e.StopInstances(&ec2.StopInstancesRequest{
-		DryRun:      aws.Boolean(false),
-		Force:       aws.Boolean(true),
-		InstanceIDs: instances,
-	})
+	resp, err := e.StopInstances(&ec2.StopInstancesRequest{ // HL
+		DryRun:      aws.Boolean(false), // HL
+		Force:       aws.Boolean(true),  // HL
+		InstanceIDs: instances,          // HL
+	}) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -31,11 +31,11 @@ func Stop(e *ec2.EC2, instances []string) {
 
 // Start will bring up an EC2 instance
 func Start(e *ec2.EC2, instances []string) {
-	resp, err := e.StartInstances(&ec2.StartInstancesRequest{
-		AdditionalInfo: aws.String(""),
-		DryRun:         aws.Boolean(false),
-		InstanceIDs:    instances,
-	})
+	resp, err := e.StartInstances(&ec2.StartInstancesRequest{ // HL
+		AdditionalInfo: aws.String(""),     // HL
+		DryRun:         aws.Boolean(false), // HL
+		InstanceIDs:    instances,          // HL
+	}) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -44,13 +44,13 @@ func Start(e *ec2.EC2, instances []string) {
 
 // ListInstanceData will print out instance data
 func ListInstanceData(e *ec2.EC2) {
-	resp, err := e.DescribeInstances(nil)
+	resp, err := e.DescribeInstances(nil) // HL
 	if err != nil {
 		log.Fatalln(err)
 	}
 	for i, r := range resp.Reservations {
 		fmt.Printf("%2d: %v - %v - %v\n", i+1,
-			*r.Instances[i].InstanceID, *r.Instances[i].Tags[0].Value, *r.Instances[i].State.Name,
+			*r.Instances[i].InstanceID, *r.Instances[i].Tags[0].Value, *r.Instances[i].State.Name, // HL
 		)
 	}
 }
