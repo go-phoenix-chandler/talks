@@ -19,7 +19,7 @@ https://github.com/go-phoenix-chandler
 # Fráma 2
 * API Access and Setup
 
-To use the AWS API you need to get an access key and a secret key.  To do so, you need to go to the IAM section of your account and create a role that has those permissions.  Then, assign that role to a group and make sure that the user is a member.  There's fine grain access controls in IAM so make sure to understand them when assigning.
+To use the AWS API you need to get an access key and a secret key. I'd recommend using AWS Identify and Access Management (IAM).
 
 To avoid security problems, add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code.
 
@@ -73,7 +73,7 @@ S3:
 
  go get github.com/awslabs/aws-sdk-go/gen/s3
 
-# Fráma
+# Fráma 6
 * A bit about the package...
 
 github.com/awslabs/aws-sdk-go/aws contains support code for the various AWS clients.  This package also contains the base data types for how the data is going to be passed back and forth to and from AWS.
@@ -91,7 +91,7 @@ Boolean values for setting a struct field are expected to be
 
  aws.Boolean(true||false)
 
-# Fráma
+# Fráma 7
 * EC2
 
 .code src/ec2/main.go /^func Connect/,/^}/
@@ -102,21 +102,21 @@ To start an instance you need to provide a pointer of StopInstancesRequest with 
 
 .code src/ec2/main.go /^func Start/,/^}/
 
-# Fráma
+# Fráma 8
 * EC2 Continued...
 
 - Stop an Instance
 
 .code src/ec2/main.go /^func Stop/,/^}/
 
-# Fráma
+# Fráma 9
 * EC2 Continued...
 
 - List Instances Including Their ID, Name, and Current State
 
 .code src/ec2/main.go /^func ListInstanceData/,/^}/
 
-# Fráma
+# Fráma 10
 * SQS
 
 - Connect
@@ -127,7 +127,7 @@ To start an instance you need to provide a pointer of StopInstancesRequest with 
 
 .code src/sqs/main.go /^func GetQueues/,/^}/
 
-# Fráma
+# Fráma 11
 * SQS Continued...
 
 - Send a Message
@@ -136,7 +136,7 @@ Simply send a message into the given queue. `SendMessageRequest` can be used for
 
 .code src/sqs/main.go /^func SendMessage/,/^}/
 
-# Fráma
+# Fráma 12
 * SQS Continued...
 
 - Retrieve a Message
@@ -145,7 +145,7 @@ In this example we're saying we want all messages from the given queue.  We can 
 
 .code src/sqs/main.go /^func RetrieveMessage/,/^}/
 
-# Fráma
+# Fráma 13
 * SQS Continued...
 
 - Print Messages
@@ -158,7 +158,7 @@ Index: ID: Body
 
   1: 34e38ac2-a0ae-42c5-abf0-cfe50e4a32c1: Test Message 1
 
-# Fráma
+# Fráma 14
 * RDS
 
 - Connecting to RDS is as exciting as it was connecting to EC2 and SQS...
@@ -169,14 +169,14 @@ Index: ID: Body
 
 .code src/rds/main.go /^func ListDBInstances/,/^}/
 
-# Fráma
+# Fráma 15
 * RDS Continued...
 
 To restore From Snapshot we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
 
 .code src/rds/main.go /^var rfs/,/^}/
 
-# Fráma
+# Fráma 16
 * RDS Continued...
 
 - Restore From Snapshot Continued...
@@ -187,7 +187,7 @@ Running the function below will bring back an RDS instance from a snapshot.
 
 An alternative to this approach is restoring from a point in time which this API supports but not shown here.
 
-# Fráma
+# Fráma 17
 * Route 53
 
 - Connect
@@ -197,11 +197,10 @@ You guessed it...
 .code src/r53/main.go /^func Connect/,/^}/
 
 - List Zones and Records
-
 - Create Record
 - Health Checks
 
-# Fráma
+# Fráma 18
 * CloudWatch
 
 - Connect
@@ -212,7 +211,7 @@ You guessed it...
 
 .code src/cloudwatch/main.go /^func ListMetrics/,/^}/
 
-# Fráma
+# Fráma 19
 * Conclusion
 
 Working with AWS using Go:

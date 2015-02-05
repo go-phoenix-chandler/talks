@@ -8,9 +8,7 @@ import (
 	"os"
 )
 
-var region = "us-west-2a"
-
-//var region = "us-west-1"
+var region = "us-west-1"
 
 // Connect will create a valid ec2 client
 func Connect() *route53.Route53 {
@@ -18,6 +16,7 @@ func Connect() *route53.Route53 {
 	return route53.New(creds, region, nil)
 }
 
+// ListZones prints out the hosted zones
 func ListZones(r *route53.Route53) {
 	resp, err := r.ListHostedZones(&route53.ListHostedZonesRequest{})
 	if err != nil {
@@ -26,7 +25,21 @@ func ListZones(r *route53.Route53) {
 	fmt.Println(*resp)
 }
 
+//
+func GetStatus(r *route53.Route53) {
+	resp, err := r.GetHealthCheckStatus( // HL
+		&route53.GetHealthCheckStatusRequest{ // HL
+			HealthCheckID: aws.String("gomeetup_check"), // HL
+		}, // HL
+	) // HL
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(*resp)
+}
+
 func main() {
 	r := Connect()
-	ListZones(r)
+	//ListZones(r)
+	GetStatus(r)
 }
