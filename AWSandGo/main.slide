@@ -17,18 +17,26 @@ https://github.com/go-phoenix-chandler
 @bdowns328
 
 # Fráma 2
+* Preface
+
+- Thank you InfusionSoft
+- Tonight's Topic
+- Experience with AWS and Go?
+- All of this can be done with the provided code and a free tier Amazon Web Services Account
+
+# Fráma 3
 * API Access and Setup
 
 To use the AWS API you need to get an access key and a secret key. I'd recommend using AWS Identify and Access Management (IAM).
 
-To avoid security problems, add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code.
+Add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code. I've found that adding a `~/.aws` file and having my shell conf file source is the best so I can still keep the shell "dot file" in version control.
 
 From your CLI or in a hidden file that your shell sources, add:
 
  $ export AWS_ACCESS_KEY="somethingofsomeinterest"
  $ export AWS_SECRET_KEY="somethingofsomeinterest"
 
-# Fráma 3
+# Fráma 4
 * Choosing a SDK
 
 There are a number of SDK's for use with Amazon Web Services.  Below are the most popular ordered by GitHub stars from highest to lowest.
@@ -39,7 +47,7 @@ There are a number of SDK's for use with Amazon Web Services.  Below are the mos
 
 For this talk I've chosen the SDK from AWSLabs since it's the most complete and supports all AWS services.
 
-# Fráma 4
+# Fráma 5
 * aws-sdk-go
 
 _From_the_GitHub_README:_
@@ -50,7 +58,7 @@ It is currently *highly* *untested*, so please be patient and report any bugs or
 
 Please do not confuse this for a stable, feature-complete library.
 
-# Fráma 5
+# Fráma 6
 * Installation
 
 Base:
@@ -73,7 +81,7 @@ S3:
 
  go get github.com/awslabs/aws-sdk-go/gen/s3
 
-# Fráma 6
+# Fráma 7
 * A bit about the package...
 
 github.com/awslabs/aws-sdk-go/aws contains support code for the various AWS clients.  This package also contains the base data types for how the data is going to be passed back and forth to and from AWS.
@@ -91,32 +99,36 @@ Boolean values for setting a struct field are expected to be
 
  aws.Boolean(true||false)
 
-# Fráma 7
+# Fráma 8
 * EC2
 
 .code src/ec2/main.go /^func Connect/,/^}/
 
 - Start an Instance
 
-To start an instance you need to provide a pointer of StopInstancesRequest with the necessary information to the StopInstance method.
+To start an instance you need to provide a pointer of `StartInstancesRequest` with the necessary information to the `StopInstance` method.
 
 .code src/ec2/main.go /^func Start/,/^}/
-
-# Fráma 8
-* EC2 Continued...
-
-- Stop an Instance
-
-.code src/ec2/main.go /^func Stop/,/^}/
 
 # Fráma 9
 * EC2 Continued...
 
+- Stop an Instance
+
+A lot of the same as the `StartInstance` though takes a pointer of `StopInstanceRequest`.
+
+.code src/ec2/main.go /^func Stop/,/^}/
+
+# Fráma 10
+* EC2 Continued...
+
 - List Instances Including Their ID, Name, and Current State
+
+The variables here are pointers.  Not reading the API docs as well as I should in the beginning made this a tedious process to get situated.  *RTFM*
 
 .code src/ec2/main.go /^func ListInstanceData/,/^}/
 
-# Fráma 10
+# Fráma 11
 * SQS
 
 - Connect
@@ -127,7 +139,7 @@ To start an instance you need to provide a pointer of StopInstancesRequest with 
 
 .code src/sqs/main.go /^func GetQueues/,/^}/
 
-# Fráma 11
+# Fráma 12
 * SQS Continued...
 
 - Send a Message
@@ -136,7 +148,7 @@ Simply send a message into the given queue. `SendMessageRequest` can be used for
 
 .code src/sqs/main.go /^func SendMessage/,/^}/
 
-# Fráma 12
+# Fráma 13
 * SQS Continued...
 
 - Retrieve a Message
@@ -145,7 +157,7 @@ In this example we're saying we want all messages from the given queue.  We can 
 
 .code src/sqs/main.go /^func RetrieveMessage/,/^}/
 
-# Fráma 13
+# Fráma 14
 * SQS Continued...
 
 - Print Messages
@@ -158,7 +170,7 @@ Index: ID: Body
 
   1: 34e38ac2-a0ae-42c5-abf0-cfe50e4a32c1: Test Message 1
 
-# Fráma 14
+# Fráma 15
 * RDS
 
 - Connecting to RDS is as exciting as it was connecting to EC2 and SQS...
@@ -169,25 +181,23 @@ Index: ID: Body
 
 .code src/rds/main.go /^func ListDBInstances/,/^}/
 
-# Fráma 15
-* RDS Continued...
-
-To restore From Snapshot we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
-
-.code src/rds/main.go /^var rfs/,/^}/
-
 # Fráma 16
 * RDS Continued...
 
-- Restore From Snapshot Continued...
+To restore from snapshot we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
+
+.code src/rds/main.go /^var rfs/,/^}/
+
+# Fráma 17
+* RDS Continued...
 
 Running the function below will bring back an RDS instance from a snapshot.
 
 .code src/rds/main.go /^func RestoreFromSnapshot/,/^}/
 
-An alternative to this approach is restoring from a point in time which this API supports but not shown here.
+An alternative to this approach is restoring from a point in time which this API supports but not shown here.  It's similar in its mechanics though takes a pointer to a different struct.
 
-# Fráma 17
+# Fráma 18
 * Route 53
 
 - Connect
@@ -200,7 +210,7 @@ You guessed it...
 - Create Record
 - Health Checks
 
-# Fráma 18
+# Fráma 19
 * CloudWatch
 
 - Connect
@@ -209,9 +219,11 @@ You guessed it...
 
 - List Metrics
 
+Not all structs need to have their fields filled with values to pass into the functions.  If you don't though, you'll most likely get back a lot of nonsense you now have to parse.  The example below is one of those.
+
 .code src/cloudwatch/main.go /^func ListMetrics/,/^}/
 
-# Fráma 19
+# Fráma 20
 * Conclusion
 
 Working with AWS using Go:
@@ -221,7 +233,7 @@ Working with AWS using Go:
 - More fun than both of the before mentioned
 - The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
 - Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitated SQS entries on events, and doing thing with RDS, etc.
-- This as well as any of the other talks given at this meetup can be found here:
+- This, as well as any of the other talks given at this meetup, can be found here:
 
 .link https://github.com/go-phoenix-chandler/talks Go Phoenix-Chandler Programmers GitHub
 
