@@ -39,7 +39,7 @@ From your CLI or in a hidden file that your shell sources, add:
 # Fráma 4
 * Choosing a SDK
 
-There are a number of SDK's for use with Amazon Web Services.  Below are the most popular ordered by GitHub stars from highest to lowest.
+There are a number of SDK's for use with Amazon Web Services.  Below are the most popular packages ordered by GitHub stars, from highest to lowest.
 
 .link https://github.com/awslabs/aws-sdk-go aws-sdk-go
 .link https://github.com/goamz/goamz goamz
@@ -124,7 +124,7 @@ A lot of the same as the `StartInstance` though takes a pointer of `StopInstance
 
 - List Instances Including Their ID, Name, and Current State
 
-The variables here are pointers.  Not reading the API docs as well as I should in the beginning made this a tedious process to get situated.  *RTFM*
+The variables here are pointers.  Not reading the API docs as well as I should have in the beginning made this a tedious process to get situated.  *RTFM*
 
 .code src/ec2/main.go /^func ListInstanceData/,/^}/
 
@@ -232,7 +232,7 @@ Working with AWS using Go:
 - Terse compared to Java
 - More fun than both of the before mentioned
 - The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
-- Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitated SQS entries on events, and doing thing with RDS, etc.
+- Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitate SQS entries for events, and doing thing with RDS, etc.
 - This, as well as any of the other talks given at this meetup, can be found here:
 
 .link https://github.com/go-phoenix-chandler/talks Go Phoenix-Chandler Programmers GitHub
