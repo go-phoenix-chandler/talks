@@ -23,7 +23,7 @@ To use the AWS API you need to get an access key and a secret key.  To do so, yo
 
 To avoid security problems, add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code.
 
-From your CLI or in your shell's setup file:
+From your CLI or in a hidden file that your shell sources, add:
 
  $ export AWS_ACCESS_KEY="somethingofsomeinterest"
  $ export AWS_SECRET_KEY="somethingofsomeinterest"
@@ -94,33 +94,30 @@ Boolean values for setting a struct field are expected to be
 # Fráma
 * EC2
 
-# Fráma
-* Connect to EC2
-
 .code src/ec2/main.go /^func Connect/,/^}/
 
-# Fráma
-* Start an Instance
+- Start an Instance
 
 To start an instance you need to provide a pointer of StopInstancesRequest with the necessary information to the StopInstance method.
 
 .code src/ec2/main.go /^func Start/,/^}/
 
 # Fráma
-* Stop an Instance
+* EC2 Continued...
+
+- Stop an Instance
 
 .code src/ec2/main.go /^func Stop/,/^}/
 
 # Fráma
-* List Instances Including Their ID, Name, and Current State
+* EC2 Continued...
+
+- List Instances Including Their ID, Name, and Current State
 
 .code src/ec2/main.go /^func ListInstanceData/,/^}/
 
 # Fráma
 * SQS
-
-# Fráma
-* Basic Operations
 
 - Connect
 
@@ -164,9 +161,6 @@ Index: ID: Body
 # Fráma
 * RDS
 
-# Fráma
-* Common RDS Functions
-
 - Connecting to RDS is as exciting as it was connecting to EC2 and SQS...
 
 .code src/rds/main.go /^func Connect/,/^}/
@@ -176,37 +170,55 @@ Index: ID: Body
 .code src/rds/main.go /^func ListDBInstances/,/^}/
 
 # Fráma
-* Restore From Snapshot
+* RDS Continued...
 
-First, we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
+To restore From Snapshot we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
 
 .code src/rds/main.go /^var rfs/,/^}/
 
 # Fráma
-* Restore From Snapshot Continued...
+* RDS Continued...
 
-Running the function below will bring back an RDS instance from snapshot.
+- Restore From Snapshot Continued...
+
+Running the function below will bring back an RDS instance from a snapshot.
 
 .code src/rds/main.go /^func RestoreFromSnapshot/,/^}/
+
+An alternative to this approach is restoring from a point in time which this API supports but not shown here.
 
 # Fráma
 * Route 53
 
-# Fráma
-* Basic Operations
-
 - Connect
+
+You guessed it...
+
+.code src/r53/main.go /^func Connect/,/^}/
+
 - List Zones and Records
+
 - Create Record
 - Health Checks
+
+# Fráma
+* CloudWatch
+
+- Connect
+
+.code src/cloudwatch/main.go /^func Connect/,/^}/
+
+- List Metrics
+
+.code src/cloudwatch/main.go /^func ListMetrics/,/^}/
 
 # Fráma
 * Conclusion
 
 Working with AWS using Go:
 
-- More verbose than Python
-- Less verbose than Java
+- Verbose compared to Python
+- Terse compared to Java
 - More fun than both of the before mentioned
 - The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
 - Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitated SQS entries on events, and doing thing with RDS, etc.
