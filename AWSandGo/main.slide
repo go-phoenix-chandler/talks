@@ -27,11 +27,11 @@ https://github.com/go-phoenix-chandler
 # Fráma 3
 * API Access and Setup
 
-To use the AWS API you need to get an access key and a secret key. I'd recommend using AWS Identify and Access Management (IAM).
+To use the AWS API, you need to get an access key and a secret key. I'd recommend using AWS Identify and Access Management (IAM).
 
-Add the Access Key and Secret Key to the user's environment that will be running the applications.  That way you don't have to include that them in your code. I've found that adding a `~/.aws` file and having my shell conf file source is the best so I can still keep the shell "dot file" in version control.
+Add the `Access Key` and `Secret Key` to the user's environment that will be running the application(s).  That way, you don't have to include them in your code. I've found that adding a `~/.aws` file and having my shell conf file source is the best method so I can still keep the shell "dot file" in version control.
 
-From your CLI or in a hidden file that your shell sources, add:
+From your CLI or in a hidden file that your shell sources, run:
 
  $ export AWS_ACCESS_KEY="somethingofsomeinterest"
  $ export AWS_SECRET_KEY="somethingofsomeinterest"
@@ -45,7 +45,7 @@ There are a number of SDK's for use with Amazon Web Services.  Below are the mos
 .link https://github.com/goamz/goamz goamz
 .link https://github.com/abneptis/GoAWS GoAWS
 
-For this talk I've chosen the SDK from AWSLabs since it's the most complete and supports all AWS services.
+For this talk I've chosen the SDK from AWSLabs since it's the most complete and supports all of the AWS services.
 
 # Fráma 5
 * aws-sdk-go
@@ -89,13 +89,13 @@ Example:
 
  aws.StringValue
 
-The API passes back strings in this data type.  It's signature is
+The API passes back strings in this data type.  It's signature is:
 
  type StringValue *string
 
-so when printing these values, they need to be written as any pointer being deferenced.
+So when printing these values, they need to be written as any pointer being deferenced.
 
-Boolean values for setting a struct field are expected to be
+Boolean values for setting a struct field are expected to be:
 
  aws.Boolean(true||false)
 
@@ -106,7 +106,7 @@ Boolean values for setting a struct field are expected to be
 
 - Start an Instance
 
-To start an instance you need to provide a pointer of `StartInstancesRequest` with the necessary information to the `StopInstance` method.
+To start an instance you need to provide a pointer of `StartInstancesRequest` with the necessary information to the `StartInstance` method.
 
 .code src/ec2/main.go /^func Start/,/^}/
 
@@ -115,7 +115,7 @@ To start an instance you need to provide a pointer of `StartInstancesRequest` wi
 
 - Stop an Instance
 
-A lot of the same as the `StartInstance` though takes a pointer of `StopInstanceRequest`.
+A lot of the same as the `StoptInstance` though takes a pointer of `StopInstanceRequest`.
 
 .code src/ec2/main.go /^func Stop/,/^}/
 
