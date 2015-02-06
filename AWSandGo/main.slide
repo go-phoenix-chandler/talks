@@ -1,0 +1,240 @@
+# Cur i láthair: AWSandGo
+# 5 Feabhra, 2015
+#
+# Header for first and last slide
+#
+# Fráma 1
+AWS and Go
+Go Phoenix-Chandler Programmers
+18:30 5 Feb 2015
+Tags: go golang go-phoenix-chandler
+
+Brian Downs
+Software Engineer, IO Data Centers
+
+http://briandowns.github.io
+https://github.com/go-phoenix-chandler
+@bdowns328
+
+# Fráma 2
+* Preface
+
+- Thank you InfusionSoft
+- Tonight's Topic
+- Experience with AWS and Go?
+- All of this can be done with the provided code and a free tier Amazon Web Services Account
+
+# Fráma 3
+* API Access and Setup
+
+To use the AWS API, you need to get an access key and a secret key. I'd recommend using AWS Identify and Access Management (IAM).
+
+Add the `Access Key` and `Secret Key` to the user's environment that will be running the application(s).  That way, you don't have to include them in your code. I've found that adding a `~/.aws` file and having my shell conf file source is the best method so I can still keep the shell "dot file" in version control.
+
+From your CLI or in a hidden file that your shell sources, run:
+
+ $ export AWS_ACCESS_KEY="somethingofsomeinterest"
+ $ export AWS_SECRET_KEY="somethingofsomeinterest"
+
+# Fráma 4
+* Choosing a SDK
+
+There are a number of SDK's for use with Amazon Web Services.  Below are the most popular packages ordered by GitHub stars, from highest to lowest.
+
+.link https://github.com/awslabs/aws-sdk-go aws-sdk-go
+.link https://github.com/goamz/goamz goamz
+.link https://github.com/abneptis/GoAWS GoAWS
+
+For this talk I've chosen the SDK from AWSLabs since it's the most complete and supports all of the AWS services.
+
+# Fráma 5
+* aws-sdk-go
+
+_From_the_GitHub_README:_
+
+The AWS SDK for Go is a set of clients for *all* Amazon Web Services APIs that initially started as [[https://github.com/awslabs/aws-sdk-go/tree/50f5f12927d77de6ec71a7473fe1f1081734d908][Stripe's aws-go library]], and is currently under development to implement full service coverage and other standard AWS SDK features.
+
+It is currently *highly* *untested*, so please be patient and report any bugs or problems you experience. The APIs may change radically without much warning, so please vendor your dependencies w/ Godep or similar.
+
+Please do not confuse this for a stable, feature-complete library.
+
+# Fráma 6
+* Installation
+
+Base:
+
+ go get github.com/awslabs/aws-sdk-go/aws
+
+EC2:
+
+ go get github.com/awslabs/aws-sdk-go/gen/ec2
+
+SQS:
+
+ go get github.com/awslabs/aws-sdk-go/gen/sqs
+
+RDS:
+
+ go get github.com/awslabs/aws-sdk-go/gen/rds
+
+S3:
+
+ go get github.com/awslabs/aws-sdk-go/gen/s3
+
+# Fráma 7
+* A bit about the package...
+
+github.com/awslabs/aws-sdk-go/aws contains support code for the various AWS clients.  This package also contains the base data types for how the data is going to be passed back and forth to and from AWS.
+Example:
+
+ aws.StringValue
+
+The API passes back strings in this data type.  It's signature is:
+
+ type StringValue *string
+
+So when printing these values, they need to be written as any pointer being deferenced.
+
+Boolean values for setting a struct field are expected to be:
+
+ aws.Boolean(true||false)
+
+# Fráma 8
+* EC2
+
+.code src/ec2/main.go /^func Connect/,/^}/
+
+- Start an Instance
+
+To start an instance you need to provide a pointer of `StartInstancesRequest` with the necessary information to the `StartInstance` method.
+
+.code src/ec2/main.go /^func Start/,/^}/
+
+# Fráma 9
+* EC2 Continued...
+
+- Stop an Instance
+
+A lot of the same as the `StoptInstance` though takes a pointer of `StopInstanceRequest`.
+
+.code src/ec2/main.go /^func Stop/,/^}/
+
+# Fráma 10
+* EC2 Continued...
+
+- List Instances Including Their ID, Name, and Current State
+
+The variables here are pointers.  Not reading the API docs as well as I should have in the beginning made this a tedious process to get situated.  *RTFM*
+
+.code src/ec2/main.go /^func ListInstanceData/,/^}/
+
+# Fráma 11
+* SQS
+
+- Connect
+
+.code src/sqs/main.go /^func Connect/,/^}/
+
+- List Queues
+
+.code src/sqs/main.go /^func GetQueues/,/^}/
+
+# Fráma 12
+* SQS Continued...
+
+- Send a Message
+
+Simply send a message into the given queue. `SendMessageRequest` can be used for more specific control.
+
+.code src/sqs/main.go /^func SendMessage/,/^}/
+
+# Fráma 13
+* SQS Continued...
+
+- Retrieve a Message
+
+In this example we're saying we want all messages from the given queue.  We can specify a number of parameters using the `ReceiveMessageRequest` struct if we wanted.
+
+.code src/sqs/main.go /^func RetrieveMessage/,/^}/
+
+# Fráma 14
+* SQS Continued...
+
+- Print Messages
+
+Print out the message ID and the message body.
+
+.code src/sqs/main.go /^func PrintMessages/,/^}/
+
+Index: ID: Body
+
+  1: 34e38ac2-a0ae-42c5-abf0-cfe50e4a32c1: Test Message 1
+
+# Fráma 15
+* RDS
+
+- Connecting to RDS is as exciting as it was connecting to EC2 and SQS...
+
+.code src/rds/main.go /^func Connect/,/^}/
+
+- List DB instances
+
+.code src/rds/main.go /^func ListDBInstances/,/^}/
+
+# Fráma 16
+* RDS Continued...
+
+To restore from snapshot we need an instance of `RestoreDBInstanceFromDBSnapshotMessage` passed to the function on the next slide.
+
+.code src/rds/main.go /^var rfs/,/^}/
+
+# Fráma 17
+* RDS Continued...
+
+Running the function below will bring back an RDS instance from a snapshot.
+
+.code src/rds/main.go /^func RestoreFromSnapshot/,/^}/
+
+An alternative to this approach is restoring from a point in time which this API supports but not shown here.  It's similar in its mechanics though takes a pointer to a different struct.
+
+# Fráma 18
+* Route 53
+
+- Connect
+
+You guessed it...
+
+.code src/r53/main.go /^func Connect/,/^}/
+
+- List Zones and Records
+- Create Record
+- Health Checks
+
+# Fráma 19
+* CloudWatch
+
+- Connect
+
+.code src/cloudwatch/main.go /^func Connect/,/^}/
+
+- List Metrics
+
+Not all structs need to have their fields filled with values to pass into the functions.  If you don't though, you'll most likely get back a lot of nonsense you now have to parse.  The example below is one of those.
+
+.code src/cloudwatch/main.go /^func ListMetrics/,/^}/
+
+# Fráma 20
+* Conclusion
+
+Working with AWS using Go:
+
+- Verbose compared to Python
+- Terse compared to Java
+- More fun than both of the before mentioned
+- The aws-sdk-go would best be vendored for safey's sake as it's been indicated that the API will be going through change until it's stabilized.
+- Go is a great language to write small services that run on EC2 hosts for R53 registation, facilitate SQS entries for events, and doing thing with RDS, etc.
+- This, as well as any of the other talks given at this meetup, can be found here:
+
+.link https://github.com/go-phoenix-chandler/talks Go Phoenix-Chandler Programmers GitHub
+
+(https://github.com/go-phoenix-chandler/talks)
