@@ -6,7 +6,7 @@ Presentations can be in any format the presenter prefers though Go provides exce
 
 ## Contributing
 
-- Clone the repo
+- Fork the repo
 - Create a branch
 - Create your presentation
 - Push changes up
@@ -14,10 +14,9 @@ Presentations can be in any format the presenter prefers though Go provides exce
 
 ```bash
 cd $GOPATH/src/github.com/gogo-phoenix-chandler
-git clone git@github.com:go-phoenix-chandler/talks.git
+git clone git@github.com:<YOURGITHUBACCOUNT>/talks.git
 cd talks
 git checkout -b <talk_title>
-vim <needed> <files>
 git add <needed> <files>
 git commit -m "New presentation!"
 git push origin <talk_title>
