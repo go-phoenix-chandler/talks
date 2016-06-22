@@ -1,0 +1,224 @@
+# Slide Title
+Anti Patterns
+Go Phoenix-Chandler Programmers
+18:30 7 Jun 2016
+Tags: go golang go-phoenix-chandler
+
+Sean Dolphin
+KPCompass, Inc.
+
+https://github.com/go-phoenix-chandler
+
+# Slide Should Be
+* Go code should ...
+
+- be simple
+- readable
+
+
+
+
+
+
+
+All code samples contain bugs to help with brevity and show off the exact issue being presented. Do not try to use any of the exact code but the concepts should help you produce better code.
+
+
+# Slide Tools
+* Good tools
+
+Tools help us get part of the way there but ...
+
+[[https://golang.org/cmd/gofmt/][go fmt]] - format Go programs.
+[[https://godoc.org/golang.org/x/tools/cmd/vet][go vet]] - report suspicious code
+[[https://github.com/golang/lint][golint]] - report coding style errors.
+[[http://blog.golang.org/godoc-documenting-go-code][godoc]] - browse documenation
+
+_"_Gofmt's_style_is_no_one's_favorite,_yet_gofmt_is_everyone's_favorite._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+# Slide TOC
+* Good Code
+
+Good code gets us the rest of the way.
+
+: The following areas contain easy to fall into common problems
+
+- Types
+- Error Checking
+- Concurrency
+
+# Slide Types
+* Types
+
+- Empty Interface
+- JSON Serialization
+- Large Interfaces
+- Simple Getter/Setter
+
+#Slide Empty Interface - Bad
+
+* Empty Interface - Bad
+.code src/empty_bad.go  /START OMIT/,/END OMIT/
+
+_"_interface{}_says_nothing._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+#Slide Empty Interface - Good
+
+* Empty Interface - Good
+.code src/empty_good.go /START OMIT/,/END OMIT/
+
+- Other errors intentionally left, they will be dealt with latter.
+
+#slide json serialization - bad
+
+* Json Serialization - Bad
+.code src/json_bad.go /START OMIT/,/END OMIT/
+
+- People do this often because their javascript is crazy ... I mean not type safe.
+- This is a thing ["thing",4,true] ... that makes me cry
+
+#slide json serialization - good
+
+* Json Serialization - Good
+.code src/json_good.go /START OMIT/,/END OMIT/
+
+Really, your JS should be not just a mash of crap but you can use this trick to figure it after the fact and still be type safe.
+
+#Slide Large Interface - Bad
+
+* Large Interface - Bad
+.code src/large_bad.go /START OMIT/,/END OMIT/
+
+_"_The_bigger_the_interface,_the_weaker_the_abstraction._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+#Slide Large Interface - Good
+
+* Large Interface - Good
+.code src/large_good.go /START OMIT/,/END OMIT/
+
+#slide GS - bad
+
+* Getter / Setters Simple - Bad
+.code src/gs_bad.go /START OMIT/,/END OMIT/
+
+#slide GS - good
+
+* Getter / Setters Simple - Good
+.code src/gs_good.go /START OMIT/,/END OMIT/
+
+# Slide Errors
+* Error Checking
+
+- Ignored Errors
+- Unhandled Panics
+- Status Codes
+- Custom Error Types
+- Uncheckable Errors
+
+#Slide Ignored Errors - Bad
+
+* Ignored Errors  - Bad
+.code src/ignored_bad.go /START OMIT/,/END OMIT/
+
+This is the code from the beginning that had a problem
+
+#Slide Ignored Errors - Good
+
+* Ignored Errors - Good
+.code src/ignored_good.go /START OMIT/,/END OMIT/
+
+- Atleast the error is returned ... still not handled.
+
+#Slide Unhandled Panics - Bad
+
+* Unhandled Panics - Bad
+.code src/panics_bad.go /START OMIT/,/END OMIT/
+
+_"_Don't_panic._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+#Slide Unhandled Panics - Good
+
+* Unhandled Panics - Good
+.code src/panics_good.go /START OMIT/,/END OMIT/
+
+Sometimes you have to call external libraries that can panic and this trick passes it up.
+
+#Slide Status Codes - Bad
+
+* Status Codes - Bad
+.code src/status_bad.go /START OMIT/,/END OMIT/
+
+- See this from people coming from C often
+- I did this with http.StatusCode
+#Slide Status Codes - Good
+
+* Status Codes - Good
+.code src/status_good.go /START OMIT/,/END OMIT/
+_"_Make_the_zero_value_useful._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+
+#Slide Custom Error - Bad
+
+* Custom Errors - Bad
+.code src/custom_bad.go /START OMIT/,/END OMIT/
+
+#Slide Custom Errors - Good
+
+* Custom Errors - Good
+.code src/custom_good.go /START OMIT/,/END OMIT/
+
+The problem is nil comparisons
+
+#Slide Irrelevant Errors - Bad
+
+* Irrelevant Errors - Bad
+.code src/ir_error_bad.go /START OMIT/,/END OMIT/
+
+_"_Don't_just_check_errors,_handle_them_gracefully._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+#Slide Irrelevant Serialization - Good
+
+* Irrelevant Errors - Good
+.code src/ir_error_good.go /START OMIT/,/END OMIT/
+
+# Slide Concurrency
+* Concurrency
+
+- Sync
+- Pointers
+
+#Slide Sync - Bad
+
+* Sync - Bad
+.code src/sync_bad.go /START OMIT/,/END OMIT/
+
+_"_Channels_orchestrate;_mutexes_serialize._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+#Slide Sync - Good
+
+* Sync - Good
+.code src/sync_good.go /START OMIT/,/END OMIT/
+
+
+#Slide Pointers - Bad
+
+* Pointers - Bad
+.code src/pointers_bad.go /START OMIT/,/END OMIT/
+
+_"_Don't_communicate_by_sharing_memory,_share_memory_by_communicating._"_
+.caption Go Proverbs: [[https://go-proverbs.github.io/]]
+
+
+#Slide Pointers - Good
+
+* Pointers - Good
+.code src/pointers_good.go /START OMIT/,/END OMIT/
+
+
